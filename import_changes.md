@@ -11,3 +11,6 @@ dipti then goes to comet
 goes to the finance import table page or the sales costsales import table page and does the import
 what happens is that there is a batch file that is executed when the import button is clicked
 the batch file copies the entire folder content of fin or sales and pastes it in the destination which is cometsrc in ediserver
+the batch files are copyfinfiles and copysalesfiles
+
+then after the files get copied to cometsrc they are then imported into the sql tables which will then be reflected on in comet.
