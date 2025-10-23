@@ -10,7 +10,7 @@
 
 
 
-*----------------------------------the changed code for the stored procedure for the live code------------------------------------*
+----------------------------------the changed code for the stored procedure for the live code------------------------------------
 	if(@iar_mstr = 'true') begin
 	/* DELETE ar_mstr WHERE ar_inv_nbr in(
 		SELECT ar_inv_nbr FROM OPENROWSET('Microsoft.Jet.OLEDB.4.0',
@@ -38,7 +38,7 @@
 	end
 
 
-  *------------------------------there was an issue with prepaid amount----------------------*
+  ------------------------------there was an issue with prepaid amount----------------------
 
   * for the prepaid amounts when we use it to pay off stuff the paid date would not show up
   * example is if a company gives us 75K in advance to spend and we now want to charge them 2K for shipping we take that amount from the prepaid amount
