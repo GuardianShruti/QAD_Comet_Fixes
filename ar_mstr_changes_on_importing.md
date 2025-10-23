@@ -41,6 +41,10 @@
 
 
 -----------------------------------the changed code in the dev environment-------------------------------
+
+
+
+
 if(@iar_mstr = 'true') begin
 	/* DELETE ar_mstr WHERE ar_inv_nbr in(
 		SELECT ar_inv_nbr FROM OPENROWSET('Microsoft.Jet.OLEDB.4.0',
