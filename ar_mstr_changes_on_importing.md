@@ -89,5 +89,11 @@ if(@iar_mstr = 'true') begin
   * then when we are importing them we make sure that we take the invoice numbers that are not in the actual table.
   * By doing the import this way we are taking all the open ones that may have changed and all the newly closed ones
 
+					delete from ar_mstr where ar_inv_nbr in (select db.ar_inv_nbr from ar_mstr as db inner join openrowset('Microsoft.ACE.OLEDB.12.0',
+        'Text;Database=C:\WebApplications\CometSrc\Fin;HDR=YES;',
+        'SELECT ar_inv_nbr FROM ar_mstr.csv') as csv on db.ar_inv_nbr = csv.ar_inv_nbr where db.ar_open =1);
+		insert into ar_mstr select * from openrowset('Microsoft.ACE.OLEDB.12.0',
+		'TEXT;Database=C:\WebApplications\CometSrc\Fin;HDR=YES','select * from ar_mstr.CSV') as csv where csv.ar_inv_nbr not in(select ar_inv_nbr from ar_mstr);
+
 
  
