@@ -82,4 +82,12 @@ if(@iar_mstr = 'true') begin
   * example is if a company gives us 75K in advance to spend and we now want to charge them 2K for shipping we take that amount from the prepaid amount
   * but when this whole process takes place in open item adjustment paid date doesnt get used so because of this the logic breaks
   * to recitify this we are going to use make sure that any closed amounts dont get deleted as they are done and dusted and we dont care for the paid date here
+  * so to summarise................................because we were looking at paid date it was also avoiding the update for the prepaid amount as there is no paid date for it
+  * so the fix is:
+  * when deleting from ar_mstr we ignore all the invoices that are closed (i.e. ar_open = 0) as there is nothing that could have changed in it.
+  * We compare using an inner join to see if there are matching invoice numbers in the csv and the actual table and if there are then we delete those invoices provided that they are open(i.e. ar_open=1)
+  * then when we are importing them we make sure that we take the invoice numbers that are not in the actual table.
+  * By doing the import this way we are taking all the open ones that may have changed and all the newly closed ones
+
+
  
