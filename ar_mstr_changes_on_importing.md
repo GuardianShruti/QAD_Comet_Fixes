@@ -45,37 +45,37 @@
 
 
 
-
-
-if(@iar_mstr = 'true') begin
-	/* DELETE ar_mstr WHERE ar_inv_nbr in(
-		SELECT ar_inv_nbr FROM OPENROWSET('Microsoft.Jet.OLEDB.4.0',
-		'Excel 8.0;Database=C:\WebApplications\CometSrc\Fin\ar_mstr.xls;IMEX=1', 
-		'SELECT ar_inv_nbr FROM [Sheet1$]')); */
-	/*DELETE ar_mstr WHERE ar_inv_nbr in(
-		SELECT ar_inv_nbr FROM OPENROWSET('MSDASQL',
-		'Driver={Microsoft Access Text Driver (*.txt, *.csv)}', 
-		'SELECT ar_inv_nbr FROM C:\WebApplications\CometSrc\Fin\ar_mstr.csv')); */
-
-		DELETE ar_mstr WHERE ar_inv_nbr in(
-		SELECT ar_inv_nbr FROM OPENROWSET('Microsoft.ACE.OLEDB.12.0',
-		'TEXT;Database=C:\WebApplications\CometSrc\Fin;HDR=1', 
-		'SELECT ar_inv_nbr FROM ar_mstr.CSV where not(ar_applied>0 and ar_paid_date IS NULL)'));
-
-	/*Insert into ar_mstr select * FROM OPENROWSET('Microsoft.Jet.OLEDB.4.0',
-		'Excel 8.0;Database=C:\WebApplications\CometSrc\Fin\ar_mstr.xls;IMEX=1', 'SELECT * FROM [Sheet1$]') */
-
-	/*Insert into ar_mstr select * FROM OPENROWSET('MSDASQL',
-		'Driver={Microsoft Access Text Driver (*.txt, *.csv)}', 
-		'SELECT * FROM C:\WebApplications\CometSrc\Fin\ar_mstr.csv') */
-
-		--Insert into ar_mstr select * FROM OPENROWSET('Microsoft.ACE.OLEDB.12.0',
-		--'TEXT;Database=C:\WebApplications\CometSrc\Fin;HDR=1', 'SELECT * FROM ar_mstr.CSV')
-		 --shruti 09/25/2025
-
-		 Insert into ar_mstr select * FROM OPENROWSET('Microsoft.ACE.OLEDB.12.0',
-		'TEXT;Database=C:\WebApplications\CometSrc\Fin;HDR=1', 'SELECT * FROM ar_mstr.CSV where not(ar_applied>0 and ar_paid_date IS NULL)');
-	end
+		
+		
+		if(@iar_mstr = 'true') begin
+			/* DELETE ar_mstr WHERE ar_inv_nbr in(
+				SELECT ar_inv_nbr FROM OPENROWSET('Microsoft.Jet.OLEDB.4.0',
+				'Excel 8.0;Database=C:\WebApplications\CometSrc\Fin\ar_mstr.xls;IMEX=1', 
+				'SELECT ar_inv_nbr FROM [Sheet1$]')); */
+			/*DELETE ar_mstr WHERE ar_inv_nbr in(
+				SELECT ar_inv_nbr FROM OPENROWSET('MSDASQL',
+				'Driver={Microsoft Access Text Driver (*.txt, *.csv)}', 
+				'SELECT ar_inv_nbr FROM C:\WebApplications\CometSrc\Fin\ar_mstr.csv')); */
+		
+				DELETE ar_mstr WHERE ar_inv_nbr in(
+				SELECT ar_inv_nbr FROM OPENROWSET('Microsoft.ACE.OLEDB.12.0',
+				'TEXT;Database=C:\WebApplications\CometSrc\Fin;HDR=1', 
+				'SELECT ar_inv_nbr FROM ar_mstr.CSV where not(ar_applied>0 and ar_paid_date IS NULL)'));
+		
+			/*Insert into ar_mstr select * FROM OPENROWSET('Microsoft.Jet.OLEDB.4.0',
+				'Excel 8.0;Database=C:\WebApplications\CometSrc\Fin\ar_mstr.xls;IMEX=1', 'SELECT * FROM [Sheet1$]') */
+		
+			/*Insert into ar_mstr select * FROM OPENROWSET('MSDASQL',
+				'Driver={Microsoft Access Text Driver (*.txt, *.csv)}', 
+				'SELECT * FROM C:\WebApplications\CometSrc\Fin\ar_mstr.csv') */
+		
+				--Insert into ar_mstr select * FROM OPENROWSET('Microsoft.ACE.OLEDB.12.0',
+				--'TEXT;Database=C:\WebApplications\CometSrc\Fin;HDR=1', 'SELECT * FROM ar_mstr.CSV')
+				 --shruti 09/25/2025
+		
+				 Insert into ar_mstr select * FROM OPENROWSET('Microsoft.ACE.OLEDB.12.0',
+				'TEXT;Database=C:\WebApplications\CometSrc\Fin;HDR=1', 'SELECT * FROM ar_mstr.CSV where not(ar_applied>0 and ar_paid_date IS NULL)');
+			end
   ------------------------------there was an issue with prepaid amount----------------------
 
   * for the prepaid amounts when we use it to pay off stuff the paid date would not show up
